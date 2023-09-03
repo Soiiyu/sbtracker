@@ -1,6 +1,7 @@
 # Hypixel Skyblock Tracker
 
 Keep track of your progress so you can view it later on.
+Currently only targetted towards my own profile.
 
 ## Usage
 
