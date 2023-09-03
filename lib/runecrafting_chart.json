@@ -1,0 +1,158 @@
+[
+    {
+        "level": 0,
+        "xp": 0,
+        "total": 0,
+        "reward": 0
+    },
+    {
+        "level": 1,
+        "xp": 50,
+        "total": 50,
+        "reward": 0
+    },
+    {
+        "level": 2,
+        "xp": 100,
+        "total": 150,
+        "reward": 0
+    },
+    {
+        "level": 3,
+        "xp": 125,
+        "total": 275,
+        "reward": 0
+    },
+    {
+        "level": 4,
+        "xp": 160,
+        "total": 435,
+        "reward": 0
+    },
+    {
+        "level": 5,
+        "xp": 200,
+        "total": 635,
+        "reward": 0
+    },
+    {
+        "level": 6,
+        "xp": 250,
+        "total": 885,
+        "reward": 0
+    },
+    {
+        "level": 7,
+        "xp": 315,
+        "total": 1200,
+        "reward": 0
+    },
+    {
+        "level": 8,
+        "xp": 400,
+        "total": 1600,
+        "reward": 0
+    },
+    {
+        "level": 9,
+        "xp": 500,
+        "total": 2100,
+        "reward": 0
+    },
+    {
+        "level": 10,
+        "xp": 625,
+        "total": 2725,
+        "reward": 0
+    },
+    {
+        "level": 11,
+        "xp": 785,
+        "total": 3510,
+        "reward": 0
+    },
+    {
+        "level": 12,
+        "xp": 1000,
+        "total": 4510,
+        "reward": 0
+    },
+    {
+        "level": 13,
+        "xp": 1250,
+        "total": 5760,
+        "reward": 0
+    },
+    {
+        "level": 14,
+        "xp": 1600,
+        "total": 7325,
+        "reward": 0
+    },
+    {
+        "level": 15,
+        "xp": 2000,
+        "total": 9325,
+        "reward": 0
+    },
+    {
+        "level": 16,
+        "xp": 2465,
+        "total": 11825,
+        "reward": 0
+    },
+    {
+        "level": 17,
+        "xp": 3125,
+        "total": 14950,
+        "reward": 0
+    },
+    {
+        "level": 18,
+        "xp": 4000,
+        "total": 18950,
+        "reward": 0
+    },
+    {
+        "level": 19,
+        "xp": 5000,
+        "total": 23950,
+        "reward": 0
+    },
+    {
+        "level": 20,
+        "xp": 6200,
+        "total": 30200,
+        "reward": 0
+    },
+    {
+        "level": 21,
+        "xp": 7800,
+        "total": 38050,
+        "reward": 0
+    },
+    {
+        "level": 22,
+        "xp": 9800,
+        "total": 47850,
+        "reward": 0
+    },
+    {
+        "level": 23,
+        "xp": 12200,
+        "total": 60100,
+        "reward": 0
+    },
+    {
+        "level": 24,
+        "xp": 15300,
+        "total": 75400,
+        "reward": 0
+    },
+    {
+        "level": 25,
+        "xp": 19050,
+        "total": 94450,
+        "reward": 0
+    }
+]

@@ -1,0 +1,19 @@
+--Hypixel Skyblock Tracker--
+Keeps track of your progress so you can view it later on.
+
+`node . <command>`
+Available commands:
+stats - grabs your stats from the API and saves them locally. (do not spam)
+lvl - calculate a skill level based on total xp
+nextlvl - based on your latest save, tells you how much xp you need to reach a certain skill level.
+    you may provide your xp per hour rate and it'll estimate how long it will take you.
+compare - compares your progress from your latest save to a specified date.
+    uses previous save if no date is provided. (yyyy-mm-dd format)
+
+Usages:
+node . lvl <xp>
+node . nextlvl <skill> <?lvl> <?xp per hour>
+node . compare <date>
+
+Other:
+refilter - used to refilter data if something new is added.

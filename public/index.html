@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>SBtracker Charts</title>
+</head>
+
+<body>
+    <script>
+        const charts = []
+
+        const plugin = {
+            id: 'custom_canvas_background_color',
+            beforeDraw: (chart) => {
+                const ctx = chart.canvas.getContext('2d');
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = '#130d1f';
+                ctx.fillRect(0, 0, chart.width, chart.height);
+                ctx.restore();
+            }
+        };
+
+        getCharts('data/Soiiy_Mango')
+        async function getCharts(dir) {
+            let f = await fetch('data')
+            let files = await f.json()
+            Object.entries(files.charts).map(([skill, datasets]) => {
+                if (datasets) {
+                    let chart = createCanvas(skill, 160, 100)
+                    const config = {
+                        type: 'line',
+                        data: { labels: files.labels, datasets },
+                        options: {
+                            scales: {
+                                y: {
+                                    stacked: true
+                                }
+                            },
+                            tension: 0.2
+                        },
+                        plugins: [plugin, {
+                            title: {
+                                display: true,
+                                text: skill
+                            }
+                        }],
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+
+                                // grid line settings
+                                grid: {
+                                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                                },
+                            },
+                        }
+                    };
+                    let newChart = new Chart(
+                        chart,
+                        config
+                    )
+                    charts.push(newChart)
+                }
+            })
+            console.log(files)
+        }
+
+        function createCanvas(id, width, height) {
+            let newCanvs = document.createElement('canvas')
+            newCanvs.id = id
+            newCanvs.width = width
+            newCanvs.height = height
+            document.body.appendChild(newCanvs)
+            return newCanvs
+        }
+
+    </script>
+</body>
+
+</html>
