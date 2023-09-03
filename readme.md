@@ -29,8 +29,5 @@ node . <command>
 
 ## Extra Utility
 
-To display stats about your accessory bag, using data from your recent save, use the following command:
-
-```
-node talismans
-```
+- `node chart`: Chart your data with all your saves to see progress over time, while running open localhost:3000 (or set a port in the config)
+- `node talismans`: Display stats about your accessory bag, using data from your recent save.

@@ -1,7 +1,12 @@
 import express from 'express'
 import fs from 'fs'
 const app = express()
-const port = 3000
+const port = require('./config.json')?.chart_port
+
+if(!port) {
+    console.log('Please generate a config.json file by running `node .` and fill it out')
+    process.exit(1)
+}
 
 let dir = 'data/Soiiy_Mango'
 // app.get('/', (req, res) => {
