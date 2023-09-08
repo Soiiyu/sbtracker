@@ -24,7 +24,7 @@ const helpMsg = fs.readFileSync('lib/help.txt', 'utf-8')
 
 
 // console.log(getURL({key: config.key, uuid: config.uuid}))
-const { key, uuid, profile } = config
+const { key, uuid, username, profile } = config
 
 switch (process.argv[2]?.toLowerCase()) {
     case 'lvl':
@@ -36,16 +36,15 @@ switch (process.argv[2]?.toLowerCase()) {
         }
         break
     case 'nextlvl':
-        toXlvl('./data/Soiiy_Mango', process.argv[3] ?? null, process.argv[4] ?? 60, process.argv[5] ?? null)
+        toXlvl(`./data/${username}_${profile}`, process.argv[3] ?? null, process.argv[4] ?? 60, process.argv[5] ?? null)
         break
     case 'compare':
-        compareStats('./data/Soiiy_Mango', process.argv[3] ?? null)
+        compareStats(`./data/${username}_${profile}`, process.argv[3] ?? null)
         break
     case 'refilter':
         reFilter()
         break
     case 'stats':
-        let name = 'Soiiy'
         fetch(getURL({ key, uuid })).then(res => { console.log(res); return res.json() }).then(data => {
             let profileData = data.profiles.find(p => p.cute_name.toLowerCase() == profile.toLowerCase())
             let player = profileData.members[uuid]
@@ -56,7 +55,7 @@ switch (process.argv[2]?.toLowerCase()) {
             let date = [nDate.getFullYear(), (nDate.getMonth() + 1).toString().padStart(2, '0'), nDate.getDate().toString().padStart(2, '0')].join('_')
             data.date = { text: date, time: nDate.getTime() }
             filtered.date = { text: date, time: nDate.getTime() }
-            let dir = `/data/${name}_${profileData.cute_name}`
+            let dir = `./data/${username}_${profile}`
 
             if (!fs.existsSync(__dirname + dir)) fs.mkdirSync(__dirname + dir)
             fs.writeFileSync(`.${dir}/filtered_${date}.json`, JSON.stringify(filtered, null, 4))

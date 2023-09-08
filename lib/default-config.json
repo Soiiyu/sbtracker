@@ -1,6 +1,7 @@
 {
     "key": "API KEY",
     "uuid": "YOUR UUID",
+    "username": "PLAYER NAME",
     "profile": "PROFILE NAME",
     "chart_port": 3000
 }
