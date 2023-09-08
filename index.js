@@ -215,6 +215,7 @@ function filterData(player, profile) {
             alchemy: getLVL(player.experience_skill_alchemy, skillChart),
             carpentry: getLVL(player.experience_skill_carpentry, skillChart),
             runecrafting: getLVL(player.experience_skill_runecrafting, runeChart, 25),
+            social: getLVL(player.experience_skill_social2, socialChart),
             taming: getLVL(player.experience_skill_taming, skillChart)
         },
         miscStats: {
