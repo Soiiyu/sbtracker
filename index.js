@@ -55,7 +55,7 @@ switch (process.argv[2]?.toLowerCase()) {
             let date = [nDate.getFullYear(), (nDate.getMonth() + 1).toString().padStart(2, '0'), nDate.getDate().toString().padStart(2, '0')].join('_')
             data.date = { text: date, time: nDate.getTime() }
             filtered.date = { text: date, time: nDate.getTime() }
-            let dir = `./data/${username}_${profile}`
+            let dir = `/data/${username}_${profile}`
 
             if (!fs.existsSync(__dirname + dir)) fs.mkdirSync(__dirname + dir)
             fs.writeFileSync(`.${dir}/filtered_${date}.json`, JSON.stringify(filtered, null, 4))
