@@ -5,7 +5,7 @@ import { dirname } from 'path'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-if(!fs.existsSync('config.json')) {
+if (!fs.existsSync('config.json')) {
     fs.copyFileSync('./lib/default-config.json', './config.json')
     console.log('New config.json file generated\nPlease fill it out before running again!')
     process.exit(1)
@@ -151,10 +151,11 @@ function compareStats(dir, last = false) {
                 const xpDiff = data.xp - p.xp
                 const killDiff = data.kills.map((tier, i) => {
                     let out
-                    if (p.kills[i]) {
-                        const kDiff = tier - p.kills[i]
-                        out = kDiff !== 0 ? `t${i + 1}: +${kDiff}` : ''
-                    } else out = ''
+                    out = `t${i + 1}: +${tier ?? 0 - p.kills[i] ?? 0}`
+                    // if (p.kills[i]) {
+                    //     const kDiff = tier - p.kills[i]
+                    //     out = kDiff !== 0 ? `t${i + 1}: +${kDiff}` : ''
+                    // } else out = ''
                     return out
                 })
                     .filter(tier => tier !== '')
@@ -164,7 +165,20 @@ function compareStats(dir, last = false) {
                     `${slayer}[${data.level}${lvlDiff !== 0 ? ` +${lvlDiff}` : ''}] +${commaNum(xpDiff)} (${data.nextLVL ? `${((data.xp / data.nextLVL) * 100).toFixed(2)}% - ${commaNum(data.xp)}/${commaNum(data.nextLVL)}` : commaNum(data.xp)})    ${killDiff}` :
                     ''
             }),
-            dungeons: [],      // to be added, idc about these atm
+            dungeons: [
+                (() => {
+                    const p = prev.dungeons.catcombs
+                    const c = curr.dungeons.catcombs
+
+                    const lvlDiff = c.xp.level - p.xp.level
+                    const xpDiff = (c.xp.total + c.xp.progress) - (p.xp.total + p.xp.progress)
+
+                    return xpDiff !== 0 ? `[${c.xp.level}${lvlDiff !== 0 ? ` +${lvlDiff}` : ''}] +${commaNum(Math.round(xpDiff))} (${c.xp.nextLVL ? `${((c.xp.progress / c.xp.nextLVL) * 100).toFixed(2)}% - ${commaNum(Math.round(c.xp.progress))}/${commaNum(Math.round(c.xp.nextLVL))}` : `${commaNum(Math.round(c.xp.total + c.xp.progress))} +${commaNum(Math.round(c.xp.progress))}`})` : ''
+
+                })(),
+                Object.entries(curr.dungeons.catcombs.floor_completions).map(([f, clears]) => ({f, total: clears, diff: clears - prev.dungeons.catcombs.floor_completions[f]})).filter(({f, diff}) => f.length == 1 && diff > 0).map(({f, total, diff}) => `f${f}: ${total} (+${diff})`).join('\n'),
+                Object.entries(curr.dungeons.master_catacombs.floor_completions).map(([f, clears]) => ({f, total: clears, diff: clears - prev.dungeons.master_catacombs.floor_completions[f]})).filter(({f, diff}) => f.length == 1 && diff > 0).map(({f, total, diff}) => `m${f}: ${total} (+${diff})`).join('\n')
+            ],      // to be added, idc about these atm
             mining: Object.entries(curr.mining.powder).map(([powder, amount]) => {
                 let diff = amount - prev.mining.powder[powder]
                 return diff !== 0 ? `${powder.replace('_total', ' powder')} +${commaNum(diff)} (${commaNum(amount)})` : ''
