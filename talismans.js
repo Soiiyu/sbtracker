@@ -23,10 +23,13 @@ let MpTable = {
 let profileData = filteredFiles[0].profiles.find(p => p.cute_name.toLowerCase() == profile.toLowerCase())
 let player = profileData.members[uuid]
 
+
 nbt.parse(Buffer.from(player.talisman_bag.data, 'base64'), (err, data) => {
     if(err) {throw err}
+    fs.writeFileSync('./talis.json', JSON.stringify(data, null, 4))
 
     let accessories = data.value.i.value.value.map(d => parseAccessory(d.tag.value))
+    // const accessories = data.map(({tag}) => parseAccessory(tag.value))
     let noRecom = JSON.parse(JSON.stringify(accessories)).map(talis => {
         if (talis.recom) talis.rarity = Object.keys(MpTable)[Object.keys(MpTable).indexOf(talis.rarity) + 1]
         return talis
